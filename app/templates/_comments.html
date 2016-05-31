@@ -1,0 +1,52 @@
+<ul class="comments">
+    {% for comment in comments %}
+        <li class="comment">
+            <div class="comment-thumbnail">
+                <a href="{{ url_for('main.user', username=comment.author.username) }}">
+                    <img class="img-rounded profile-thumbnail" src="{{ comment.author.gravatar(size=40) }}">
+                </a>
+            </div>
+            <div class="comment-content">
+                <div class="comment-date">{{ moment(comment.timestamp).fromNow() }}</div>
+                <div class="comment-author"><a
+                        href="{{ url_for('main.user', username=comment.author.username) }}">{{ comment.author.username }}</a>
+                </div>
+                <br>
+                <div class="comment-body">
+                    {% if comment.disabled %}
+                        <p><i>此评论被管理员设为不可见</i></p>
+                    {% endif %}
+                    {% if moderate or not comment.disabled or current_user.can(Permission.MODERATE_COMMENTS) %}
+                        {% if comment.body_html %}
+                            {{ comment.body_html | safe }}
+                        {% else %}
+                            {{ comment.body }}
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+            <div align="right" class="row">
+                <ul class="list-unstyled list-inline">
+                    <li>
+                        {% if moderate or current_user.can(Permission.MODERATE_COMMENTS) or current_user==comment.author or current_user==comment.post.author %}
+                            <a class="btn btn-danger btn-xs"
+                               href="{{ url_for('main.delete_comment',id=comment.id) }}">删除此评论</a>
+                        {% endif %}
+                    </li>
+                    <li>
+                        {% if moderate or current_user.can(Permission.MODERATE_COMMENTS) %}
+                            <br>
+                            {% if comment.disabled %}
+                                <a class="btn btn-default btn-xs"
+                                   href="{{ url_for('main.moderate_enable',id=comment.id,page=page) }}">恢复此评论</a>
+                            {% else %}
+                                <a class="btn btn-default btn-xs"
+                                   href="{{ url_for('main.moderate_disable',id=comment.id,page=page) }}">关闭此评论</a>
+                            {% endif %}
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </li>
+    {% endfor %}
+</ul>

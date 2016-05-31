@@ -1,0 +1,127 @@
+{% extends "bootstrap/base.html" %}
+
+
+
+{% block title %}
+    关于我
+{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="/static/about_me.css">
+    <style type="text/css">
+        h1 {
+            font-size: 50px;
+        }
+
+        h2 {
+            font-size: 40px;
+        }
+
+        h3 {
+            font-size: 30px;
+        }
+
+        h4 {
+            font-size: 20px;
+        }
+
+        p {
+            font-size: 15px;
+        }
+
+        blockquote p {
+            font-size: 17px;
+        }
+
+        body {
+            font-size: 15px;
+        }
+    </style>
+{% endblock head %}
+
+{% block body %}
+
+    <body style="background-color: #EEE">
+    <div class="container-fluid">
+        <div class="col-md-offset-2 ">
+            <div class="row ">
+                <article class="col-md-8  article the-font"
+                         style="margin :50px auto 50px auto;background-color:#FFF;box-shadow: rgb(167, 163, 163) 5px 5px 20px;">
+                    {# width:61.8% ; #}
+                    <div style="padding-left: 0px">
+                        <div>
+                            <h3>个人信息：</h3>
+                            <hr>
+                            <ul>
+                                <li>姓名：王胜广</li>
+                                <li>年龄：22</li>
+                                <li>居住地：北京</li>
+                                <li>学历：应届毕业生</li>
+
+                            </ul>
+                            <h3>联系方式：</h3>
+                            <hr>
+                            <ul>
+                                <li>EMAIL:<a href="#">MrWangShengguang@gmail.com</a></li>
+
+                                <li>QQ:3028156088</li>
+                            </ul>
+                            <h3>个人代码库：</h3>
+                            <hr>
+                            <ul>
+                                <li>GITHUB:<a href="https://github.com/salamer">https://github.com/salamer</a></li>
+                                <li>该网站源代码：<a href="https://github.com/salamer/GAGASALAMER_BLOG">https://github.com/salamer/GAGASALAMER</a>
+                                </li>
+                            </ul>
+                            <h3>已学过的：</h3>
+                            <hr>
+                            <ul>
+                                <li>能够使用django，flask，tornado框架（该网站就是基于flask编写的）</li>
+                                <li>sql</li>
+                                <li>c,c++（做项目，码算法，看底层）</li>
+                                <li>python的爬虫编写</li>
+                                <li>使用ruby的ruby on rails框架</li>
+                                <li>bootstrap，pure等前端相应式布局</li>
+                                <li>jquery,angularjs</li>
+                                <li>nodejs</li>
+                            </ul>
+                            <h3>发展方向：</h3>
+                            <hr>
+                            <ul>
+                                <li>算法与数据结构学习（ACM）</li>
+                                <li>机器学习</li>
+                                <li>数据挖掘</li>
+                                <li>计算机图像处理</li>
+                            </ul>
+                            <h3>其他兴趣：</h3>
+                            <hr>
+                            <ul>
+                                <li>语言：英语，日语</li>
+                                <li>历史迷，特别二战史，欧洲史，罗马史，日本战国史</li>
+                                <li>对社会科学也有些想象</li>
+                            </ul>
+
+                            <h3>格言：</h3>
+                            <hr>
+                            <blockquote>
+                                <p></p>
+                                <p>也许多少年后在某个地方，</p>
+                                <p>我将轻声叹息将往事回顾：</p>
+                                <p>一片树林里分出两条路——</p>
+                                <p>而我选择了人迹更少的一条，</p>
+                                <p>从此决定了我一生的道路。</p>
+                                <p class="text-right"><em>——Robert Frost 《The Road Not Taken》</em></p>
+                            </blockquote>
+                            <hr>
+                            {# 应聘Python后端-王胜广#}
+                            <h4>下载简历：</h4> <a href="/static/about_me.pdf" download=" 王胜广的简历">下载</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+    </body>
+
+{% endblock body %}

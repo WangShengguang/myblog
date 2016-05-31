@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% import '_macros.html' as macros %}
+
+{% block title %}Flasky - 后台管理{% endblock %}
+
+{% block page_content %}
+    <div class="page-header">
+        <h1>后台管理</h1>
+    </div>
+
+    <div>
+        <ul class="nav nav-tabs">
+            <li{% if show_user %} class="active"{% endif %}><a
+                    href="{{ url_for('.show_user') }}">用户管理</a>
+            </li>
+
+            <li{% if  show_comment %} class="active"{% endif %}><a
+                    href="{{ url_for('.show_comment') }}">评论管理</a>
+            </li>
+
+        </ul>
+
+        {% include '_comments.html' %}
+        {% if users %}
+            <table class="table table-hover users">
+                <thead>
+                <tr>
+                    <th>用户</th>
+                    <th>注册时间</th>
+                    <th>最近一次访问时间</th>
+                    <th>行为管理</th>
+                </tr>
+                </thead>
+                {% for user in users %}
+                    {#followers  views传入元组#}
+
+                    <tr>
+                        <td>
+                            <a href="{{ url_for('main.user', username = user.username) }}">
+                                <img class="img-rounded" src="{{ user.gravatar(size=32) }}">
+                                {{ user.username }}
+                            </a>
+                        </td>
+                        <td>
+                            {{ moment(user.member_since).format('L') }}
+                        </td>
+                        <td>
+                            {{ moment(user.last_seen).format('L') }}
+                        </td>
+                        {% if current_user.can(Permission.MODERATE_COMMENTS) %}
+                            <td>
+                                {% if user.forbid %}
+                                    <a class="btn btn-default btn-xs"
+                                       href="{{ url_for('admin.unforbid_user', id = user.id) }}">
+                                        解禁用户
+                                    </a>
+                                {% else %}
+                                    <a class="btn btn-default btn-xs"
+                                       href="{{ url_for('admin.forbid_user', id = user.id) }}">
+                                        禁封用户
+                                    </a>
+                                {% endif %}
+                            </td>
+                        {% endif %}
+                    </tr>
+
+                {% endfor %}
+            </table>
+        {% endif %}
+
+        {% set moderate=True %}
+
+        {% if pagination %}
+            <div class="pagination">
+                {{ macros.pagination_widget(pagination,'.moderate') }}
+            </div>
+        {% endif %}
+    </div>
+
+
+
+
+
+
+
+{% endblock %}
+
+
+

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block page_content %}
+    {% if current_user.can(Permission.WRITE_ARTICLES) %}
+{#        <div >#}
+{#            {{ wtf.quick_form(form) }}#}
+{#        </div>#}
+
+
+        {% include '_post_form.html' %}
+    {% endif %}
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    {{ pagedown.include_pagedown() }}
+{% endblock %}
