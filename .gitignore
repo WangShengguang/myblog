@@ -1,4 +1,7 @@
 *.pyc
+*.ini
+*.conf
+logs/
 config.txt
 *.sqlite
 migrations/
