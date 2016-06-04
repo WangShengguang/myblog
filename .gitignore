@@ -3,6 +3,7 @@
 *.conf
 logs/
 .swp
+.swo
 config.txt
 *.sqlite
 migrations/
