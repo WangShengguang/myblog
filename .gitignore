@@ -2,8 +2,8 @@
 *.ini
 *.conf
 logs/
-.swp
-.swo
+*.swp
+*.swo
 config.txt
 *.sqlite
 migrations/
