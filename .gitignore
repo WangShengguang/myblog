@@ -2,6 +2,7 @@
 *.ini
 *.conf
 logs/
+.swp
 config.txt
 *.sqlite
 migrations/
