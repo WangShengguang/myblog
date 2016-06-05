@@ -50,7 +50,7 @@ def moderate():
     show_user = True
     if current_user.is_authenticated:
         show_comment = bool(request.cookies.get('show_comment', ''))
-        show_user = bool(request.cookies.get('show_user', ''))
+        show_user = bool(request.cookies.get('show_user', '1'))
         page = request.args.get('page', 1, type=int)
     if show_user:
         query = User.query.order_by(User.username)

@@ -30,7 +30,6 @@ def deploy():
     Category.insert_categorys()
     User.add_self_follows()
 
-<<<<<<< HEAD
    # User.generate_fake(100)
    # Post.generate_fake(100)
 
