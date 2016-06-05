@@ -104,89 +104,90 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container" style="padding: 70px 0px 0px 50px">
-        <div class="row">
-            {% for message in get_flashed_messages() %}
-                <div class="alter alter-waring  col-md-5">
-                    <b>
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        {{ message.decode('utf-8') }}</b>
+
+        <div class="container" style="padding: 70px 0px 0px 50px; ">
+            <div class="row">
+                {% for message in get_flashed_messages() %}
+                    <div class="alter alter-waring  col-md-5">
+                        <b>
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            {{ message.decode('utf-8') }}</b>
+                    </div>
+                    </div>
+                {% endfor %}
+
+
+            <div class="row">
+                <div class="col-md-8 main">
+                    <div class="post-tabs">
+                        <ul class="nav nav-tabs">
+                            <li{% if not show_followed %} class="active"{% endif %}><a
+                                    href="{{ url_for('.show_all') }}">所有文章</a>
+                            </li>
+
+                            <li{% if show_followed %} class="active"{% endif %}><a
+                                    href="{{ url_for('.show_followed') }}">关注者文章</a>
+                            </li>
+
+                        </ul>
+
+                        {% include '_posts.html' %}
+
+                    </div>
+
+                    <div class="pagination">
+                        {{ macros.pagination_widget(pagination,'.index') }}
+                    </div>
+
                 </div>
-                </div>
-            {% endfor %}
+
+                <div class="col-md-3 sidebar" style="padding:30px 10px">
+
+                    <a href="{{ url_for('admin.about_me') }}" class=""><h4>关于我</h4></a>
+                    <img src="/static/tianchixiagu.jpg" width="200" height="220">
 
 
-        <div class="row">
-            <div class="col-md-8 main">
-                <div class="post-tabs">
-                    <ul class="nav nav-tabs">
-                        <li{% if not show_followed %} class="active"{% endif %}><a
-                                href="{{ url_for('.show_all') }}">所有文章</a>
+                    <ul class="list-inline">
+                        <li>
+                            <a class="navbar-brand" href="tencent://message/?uin=1085092799&amp;Site=&amp;Menu=yes">
+                                <img alt="QQ" src="/static/qq.png" width="25" height="25">
+                            </a>
                         </li>
-
-                        <li{% if show_followed %} class="active"{% endif %}><a
-                                href="{{ url_for('.show_followed') }}">关注者文章</a>
+                        <li>
+                            <a class="navbar-brand" href="https://github.com/WangShengguang" target="_blank">
+                                <img alt="GitHub" src="/static/github.png" width="25" height="25">
+                            </a>
                         </li>
+                        <li>
+                            <a class="navbar-brand" href="mailto:MrWangShengguang@gmail.com" target="_blank">
+                                <img alt="Email" src="/static/email.png" width="25" height="25">
+                            </a>
+                        </li>
+                    </ul>
+                    <hr>
+                    <ul class="nav navbar-pills">
+                        <li><a href="{{ url_for('admin.about_me') }}" target=_blank><h4>我的简历</h4></a></li>
+                    </ul>
+                    <hr>
+                    <b class="text-center">分类</b>
+                    <hr cols="1">
+                    {#                <ol class=" breadcrumb">#}
+                    {#                    <li><a href="#">首页</a></li>#}
+                    {#                    <li><a href="#">分类</a></li>#}
+                    {#                    <li class="active">Data</li>#}
+                    {#                </ol>#}
+                    <ul class="nav navbar-pills nav-sidebar">{# list-inline list-unstyled "> #}
 
+                        {% for tag in tags %}
+                            <li><a href="{{ url_for('main.tag',id=tag.id) }}">{{ tag.name }}
+                                <span class="badge">{{ tag.posts.count() }}</span></a></li>
+                        {% endfor %}
                     </ul>
 
-                    {% include '_posts.html' %}
-
                 </div>
-
-                <div class="pagination">
-                    {{ macros.pagination_widget(pagination,'.index') }}
-                </div>
-
-            </div>
-
-            <div class="col-md-3 sidebar" style="padding:30px 10px">
-
-                <a href="{{ url_for('admin.about_me') }}" class=""><h4>关于我</h4></a>
-                <img src="/static/tianchixiagu.jpg" width="200" height="220">
-
-
-                <ul class="list-inline">
-                    <li>
-                        <a class="navbar-brand" href="tencent://message/?uin=1085092799&amp;Site=&amp;Menu=yes">
-                            <img alt="QQ" src="/static/qq.png" width="25" height="25">
-                        </a>
-                    </li>
-                    <li>
-                        <a class="navbar-brand" href="https://github.com/WangShengguang" target="_blank">
-                            <img alt="GitHub" src="/static/github.png" width="25" height="25">
-                        </a>
-                    </li>
-                    <li>
-                        <a class="navbar-brand" href="mailto:MrWangShengguang@gmail.com" target="_blank">
-                            <img alt="Email" src="/static/email.png" width="25" height="25">
-                        </a>
-                    </li>
-                </ul>
-                <hr>
-                <ul class="nav navbar-pills">
-                    <li><a href="{{ url_for('admin.about_me') }}" target=_blank><h4>我的简历</h4></a></li>
-                </ul>
-                <hr>
-                <b class="text-center">分类</b>
-                <hr cols="1">
-                {#                <ol class=" breadcrumb">#}
-                {#                    <li><a href="#">首页</a></li>#}
-                {#                    <li><a href="#">分类</a></li>#}
-                {#                    <li class="active">Data</li>#}
-                {#                </ol>#}
-                <ul class="nav navbar-pills nav-sidebar">{# list-inline list-unstyled "> #}
-
-                    {% for tag in tags %}
-                        <li><a href="{{ url_for('main.tag',id=tag.id) }}">{{ tag.name }}
-                            <span class="badge">{{ tag.posts.count() }}</span></a></li>
-                    {% endfor %}
-                </ul>
-
             </div>
         </div>
 
-    </div>
 {% endblock %}
 
 
