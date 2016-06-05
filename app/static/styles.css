@@ -105,3 +105,14 @@ div.flask-pagedown-preview h3 {
 .table.followers tr {
     border-bottom: 1px solid #e0e0e0;
 }
+pre{
+    background-color: #fcfaf2;
+}
+ pre code {
+    padding: 2px 4px;
+    background-color: #fdf6e3;
+    border: none;
+    color: #657b83;
+    font-size: 12px;
+    white-space: pre-wrap;
+}
