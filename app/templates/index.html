@@ -164,9 +164,9 @@
                     </li>
                 </ul>
                 <hr>
-                <div class="nav navbar-pills">
+                <ul class="nav navbar-pills">
                     <li><a href="{{ url_for('admin.about_me') }}" target=_blank><h4>我的简历</h4></a></li>
-                </div>
+                </ul>
                 <hr>
                 <b class="text-center">分类</b>
                 <hr cols="1">
@@ -178,7 +178,8 @@
                 <ul class="nav navbar-pills nav-sidebar">{# list-inline list-unstyled "> #}
 
                     {% for tag in tags %}
-                        <li><a href="{{ url_for('main.tag',id=tag.id) }}">{{ tag.name }}</a></li>
+                        <li><a href="{{ url_for('main.tag',id=tag.id) }}">{{ tag.name }}
+                            <span class="badge">{{ tag.posts.count() }}</span></a></li>
                     {% endfor %}
                 </ul>
 

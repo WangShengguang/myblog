@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 from . import db
 from flask.ext.login import UserMixin, AnonymousUserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -332,7 +333,7 @@ class Category(db.Model):
 
     @staticmethod
     def insert_categorys():
-        categorys = ['Python', 'Flask', 'MySQL', 'Essay']
+        categorys = ['Python', 'Flask', 'MySQL', '随笔'.decode('utf-8'),'诗词'.decode('utf-8')]
         for name in categorys:
             category = Category.query.filter_by(name=name).first()
             if category is None:
