@@ -69,6 +69,7 @@ def confirm(token):
 @auth.before_app_request
 def before_request():
     if current_user.forbid:
+        logout_user()
         flash('当前账号已禁封，请联系管理员解封')
         return render_template('forbid.html')
     if current_user.is_authenticated:
