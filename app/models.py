@@ -238,7 +238,8 @@ class User(UserMixin, db.Model):
 
 
 class AnonymousUser(AnonymousUserMixin):
-    forbid=False
+    forbid = False
+
     def can(self, permissions):
         return False
 
@@ -279,7 +280,7 @@ class Post(db.Model):
     @staticmethod
     def on_changed_body(target, value, oldvalue, initiator):
         allowed_tags = ['a', 'abbr', 'acronym', 'b', 'blockquote', 'code', 'em', 'i', 'li', 'ol', 'pre',
-                        'strong', 'ul', 'h1', 'h2', 'h3', 'p','code']
+                        'strong', 'ul', 'h1', 'h2', 'h3', 'p', 'code']
         target.body_html = bleach.linkify(
             bleach.clean(markdown(value, output_format='html'), tags=allowed_tags, strip=True))
 
@@ -333,7 +334,8 @@ class Category(db.Model):
 
     @staticmethod
     def insert_categorys():
-        categorys = ['Python', 'Flask', 'MySQL', 'Linux','随笔'.decode('utf-8'),'诗词'.decode('utf-8'),'数据结构与算法'.decode('utf-8')]
+        categorys = ['Python', 'Flask', 'MySQL', 'Linux', '随笔'.decode('utf-8'), '诗词'.decode('utf-8'),
+                     '数据结构与算法'.decode('utf-8')]
         for name in categorys:
             category = Category.query.filter_by(name=name).first()
             if category is None:

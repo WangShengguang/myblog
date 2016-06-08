@@ -69,8 +69,8 @@ def confirm(token):
 @auth.before_app_request
 def before_request():
     if current_user.forbid:
-        flash('账号已禁封，请联系管理员解封')
-        return redirect(url_for('main.index'))
+        flash('当前账号已禁封，请联系管理员解封')
+        return render_template('forbid.html')
     if current_user.is_authenticated:
         current_user.ping()
         if not current_user.confirmed and request.endpoint[:5] != 'auth.' and request.endpoint != 'static':
