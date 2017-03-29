@@ -30,8 +30,8 @@ def deploy():
     Category.insert_categorys()
     User.add_self_follows()
 
-   # User.generate_fake(100)
-   # Post.generate_fake(100)
+    # User.generate_fake(100)
+    # Post.generate_fake(100)
 
 
 @manager.command

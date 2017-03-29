@@ -1,0 +1,85 @@
+{% extends "lfj/common/base.html" %}
+
+{% block css_ext %}
+<link href="{{ url_for('static', filename='application.css') }}" media="all" rel="stylesheet">
+{% endblock %}
+
+{% block js_ext %}
+<script src="{{ url_for('static', filename='application.js') }}"></script>
+{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid">
+
+    <h4>VPN应用信息</h4>
+    <form>
+        <div class="input-prepend">
+            <span class="add-on">名字含</span>
+            <input type="text" class="input-medium search-query" name="app_name" value="">
+        </div>
+
+        <div class="input-prepend">
+            <span class="add-on">渠道id</span>
+            <input class="input-medium search-query" name="market_id" value="">
+        </div>
+
+        <div class="input-prepend">
+            <span class="add-on">应用类别</span>
+            <input class="input-medium search-query" name="category" value="">
+        </div>
+
+        <button type="submit" class="btn-primary btn">搜</button>
+    </form>
+
+    <table class="table table-hover table-bordered">
+        <thead>
+        <tr bgcolor="BBBBBB">
+            <th>应用名</th>
+            <th>渠道id</th>
+            <th>应用类别</th>
+            <th>应用版本号</th>
+            <th>详情页地址</th>
+            <th>下载地址</th>
+            <th>应用上线时间（页面上显示的时间）</th>
+        </tr>
+        </thead>
+        <tbody>
+        {%for app in apps%}
+        <tr class="success">
+            <td>{{app.name}}</td>
+            <td>{{app.market_id}}</td>
+            <td>{{app.category|default('')}}</td>
+            <td>{{app.version}}</td>
+            <td><a href="http://42.62.59.216:8900/{{app.des_url}}">{{app.des_url}}</a></td>
+            <td><a href="http://42.62.59.216:8900/{{app.down_url}}">{{app.down_url}}</a></td>
+            <td>{{app.deploy_date}}</td>
+        </tr>
+        {%endfor%}
+        </tbody>
+    </table>
+    <div class="pagination">
+        <a class="next_page" rel="prev"
+           {%if have_pre%} href="/?page={{page-1}}&amp;developer={{developer}}&amp;app_name={{app_name}} {%endif%}  ">
+            &nbsp;上一页&nbsp;</a>
+
+        <a class="next_page " rel="next"
+           {%if have_next%}
+           href="/?page={{page+1}}&amp;developer={{developer}}&amp;app_name={{app_name}} {%endif%}">&nbsp;&nbsp;&nbsp;&nbsp;下一页&nbsp;
+        </a>
+        <em class="current">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第&nbsp;{{page}}&nbsp;页&nbsp;</em>
+        <span>，&nbsp;&nbsp;共{{total_page}}页</span>
+        <br><br>
+        <form>
+            <div class="input-prepend">
+                <input style="display: none" name="app_name" value="{{app_name}}">
+                <input style="display: none" name="developer" value="{{developer}}">
+                <button type="submit" class="btn-primary btn">转到</button>
+                <input name="page" value="{{page}}" style="width: 50px">
+            </div>
+        </form>
+
+    </div>
+</div>
+{% endblock %}
+

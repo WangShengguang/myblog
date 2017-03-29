@@ -11,6 +11,7 @@ from config import config
 from flask.ext.whooshalchemyplus import whoosh_index
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('utf8')
 
@@ -28,9 +29,9 @@ login_manager.login_message = "进行此操作前需要登录账号."
 
 def create_app(config_name):
     app = Flask(__name__, instance_relative_config=True)
-    #app.config.from_object(config[config_name])
-    #config[config_name].init_app()
-    #以上为原配置,下为采用本地配置
+    # app.config.from_object(config[config_name])
+    # config[config_name].init_app()
+    # 以上为原配置,下为采用本地配置
     app.config.from_object(config)
     app.config.from_pyfile('config.py')  # 是否启用instance的配置
 
@@ -53,5 +54,8 @@ def create_app(config_name):
 
     from .admin import admin as admin_blueprint
     app.register_blueprint(admin_blueprint, url_prefix='/admin')
+
+    from .lfj import lfj as lfj_blueprint
+    app.register_blueprint(lfj_blueprint, url_prefix='/lfj')
 
     return app

@@ -1,0 +1,33 @@
+{% extends "lfj/common/base.html" %}
+
+{% block css_ext %}
+<style>
+    .bar {
+        height: 18px;
+        background: green;
+    }
+</style>
+{% endblock %}
+
+{% block js_ext %}
+<script src="{{ url_for('static', filename='lfj/echarts.js') }}"></script>
+<script src="{{ url_for('static', filename='lfj/upload/jquery.ui.widget.js') }}"></script>
+<script src="{{ url_for('static', filename='lfj/upload/jquery.iframe-transport.js') }}"></script>
+<script src="{{ url_for('static', filename='lfj/upload/jquery.fileupload.js') }}"></script>
+<script src="{{ url_for('static', filename='lfj/ipstat.js') }}"></script>
+{% endblock %}
+
+
+{% block content %}
+<div style="margin: 0 0">
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 950px;height:450px;"></div>
+    <input id="fileupload" type="file" name="upload_file.xls" data-url="upload/" multiple>
+    <div id="progress">
+        <div class="bar" style="width: 0%;"></div>
+    </div>
+    <p>文件类型为excel文件（.xls）,格式为：id，ip，访问次数，日期</p>
+    <p>上传文件后请手动刷新页面</p>
+</div>
+
+{% endblock %}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://v3.bootcss.com/examples/dashboard/ -->
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://v3.bootcss.com/favicon.ico">
+
+    <title>Dashboard Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/lfj/base/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="/static/lfj/base/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/lfj/base/dashboard.css" rel="stylesheet">
+
+    <script src="/static/lfj/base/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="{{ url_for('static', filename='lfj/jquery-3.2.0.js') }}"></script>
+    <style type="text/css">
+        <!--
+        a:link {
+            text-decoration: none;
+        }
+
+        a:visited {
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        a:active {
+            text-decoration: none;
+        }
+
+        -->
+    </style>
+    {% block css_ext%} {%endblock%}
+
+    {% block js_ext %} {% endblock %}
+</head>
+
+<body>
+
+{% block head_nav %}
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/lfj">lfj</a>
+        </div>
+    </div>
+</nav>
+{%endblock head_nav%}
+
+
+<div class="container-fluid">
+    <div class="row">
+        {% block left%}
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar" id="left_nav">
+                <li {% if request.path=="/" %} class="active" {% endif %}>
+                    <a href="/lfj/zone">空间分布图</a>
+                </li>
+                <li {% if request.path=="/1" %} class="active" {% endif %}>
+                    <a href="/lfj/time">时间折线图</a>
+                </li>
+                <li {% if request.path=="/1" %} class="active" {% endif %}>
+                    <a href="/lfj/time_zone">时空变化图</a>
+                </li>
+            </ul>
+        </div>
+        {% endblock left%}
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            {% block content%}
+            {%endblock%}
+        </div>
+    </div>
+</div>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+
+<script src="/static/lfj/base/holder.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="/static/lfj/base/ie10-viewport-bug-workaround.js"></script>
+
+<div id="cntvlive2-is-installed"></div>
+</body>
+</html>
