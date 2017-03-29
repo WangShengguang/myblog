@@ -1,12 +1,9 @@
 # -*- coding:utf-8 -*-
 import os
-import string
 
-import xlrd
 from flask import jsonify
 from flask import redirect
 from flask import render_template
-from flask import url_for
 
 from . import lfj
 
@@ -14,29 +11,32 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 FILE_PATH = BASE_DIR + os.sep + 'files'
 
 
+@lfj.route('/test/', methods=['GET'])
+def test():
+    return render_template('lfj/zone_2.html')
+
+
 @lfj.route('/', methods=['GET'])
 def index():
-    return redirect('/lfj/zone')
+    return redirect('/lfj/zone/')
 
 
-@lfj.route('/zone', methods=['GET', 'POST'])
+@lfj.route('/zone/', methods=['GET', 'POST'])
 def zone():
-    return render_template('lfj/ipstat.html')
-
-
-@lfj.route('/time', methods=['GET', 'POST'])
-def time():
-    print 'nilaile----------- '
     return render_template('lfj/zone.html')
 
 
-@lfj.route('/time_zone', methods=['GET', 'POST'])
+@lfj.route('/time/', methods=['GET', 'POST'])
+def time():
+    return render_template('lfj/zone.html')
+
+
+@lfj.route('/time_zone/', methods=['GET', 'POST'])
 def time_zone():
-    print 'nilaile----------- '
     return render_template('lfj/ipstat.html')
 
 
-@lfj.route('/api/people_data/')
+@lfj.route('/api/zone_data/')
 def ip_api_data():
     'echarts 图表数据接口'
     res = {'zone': ['师宗县', '罗平县', '陆良县', '曲靖市', '马龙县', '富源县', '沾益县', '宣威市', '会泽县'],

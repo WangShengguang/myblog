@@ -14,7 +14,7 @@
 <script src="{{ url_for('static', filename='lfj/upload/jquery.ui.widget.js') }}"></script>
 <script src="{{ url_for('static', filename='lfj/upload/jquery.iframe-transport.js') }}"></script>
 <script src="{{ url_for('static', filename='lfj/upload/jquery.fileupload.js') }}"></script>
-<script src="{{ url_for('static', filename='lfj/ipstat.js') }}"></script>
+<script src="{{ url_for('static', filename='lfj/zone.js') }}"></script>
 {% endblock %}
 
 
@@ -22,12 +22,70 @@
 <div style="margin: 0 0">
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
     <div id="main" style="width: 950px;height:450px;"></div>
-    <input id="fileupload" type="file" name="upload_file.xls" data-url="upload/" multiple>
-    <div id="progress">
-        <div class="bar" style="width: 0%;"></div>
-    </div>
-    <p>文件类型为excel文件（.xls）,格式为：id，ip，访问次数，日期</p>
-    <p>上传文件后请手动刷新页面</p>
+    <div id="main_2" style="width: 950px;height:450px;"></div>
+
 </div>
 
+    <script>
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main_2'));
+    $.get('/lfj/api/zone_data/').done(function (Data) {
+{#        console.log(Data);#}
+        // 指定图表的配置项和数据
+        var axisData =Data.zone ;//['周一','周二','周三','周四','周五','周六','周日'];
+{#        var data = axisData.map(function (item, i) {#}
+{#            return Math.round(Math.random() * 1000 * (i + 1));#}
+{#        });#}
+        var data=Data.count;
+        var links = data.map(function (item, i) {
+            return {
+                source: i,
+                target: i + 1
+            };
+        });
+        links.pop();
+        option = {
+            title: {
+                text: '从南到北各县百岁老人人数'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            xAxis: {
+                type : 'category',
+                boundaryGap : false,
+                data : axisData
+            },
+            yAxis: {
+                type : 'value'
+            },
+            series: [
+                {
+                    type: 'graph',
+                    layout: 'none',
+                    coordinateSystem: 'cartesian2d',
+                    symbolSize: 40,
+                    label: {
+                        normal: {
+                            show: true
+                        }
+                    },
+                    edgeSymbol: ['circle', 'arrow'],
+                    edgeSymbolSize: [4, 10],
+                    data: data,
+                    links: links,
+                    lineStyle: {
+                        normal: {
+                            color: '#2f4554'
+                        }
+                    }
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    });
+
+    </script>
 {% endblock %}

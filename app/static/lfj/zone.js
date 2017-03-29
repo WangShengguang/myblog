@@ -33,20 +33,20 @@ $(document).ready(function () {
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('main'));
 
-    $.get('/lfj/api/people_data/').done(function (data) {
+    $.get('/lfj/api/zone_data/').done(function (data) {
         console.log(data);
         // 指定图表的配置项和数据
         //折线图
         option = {
             title: {
-                text: '各县市百岁老人人数',
+                text: '从南到北各县百岁老人人数',
                 // subtext: '访问次数'
             },
             tooltip: {
                 trigger: 'axis'
             },
             legend: {
-                data: ['百岁老人数']
+                data: ['访问量']
             },
             toolbox: {
                 show: true,
@@ -73,7 +73,7 @@ $(document).ready(function () {
             },
             series: [
                 {
-                    name: '人数',
+                    name: '访问量',
                     type: 'line',
                     data: data.count//[1, -2, 2, 5, 3, 2, 0],   //访问量  从api获取
                 }
