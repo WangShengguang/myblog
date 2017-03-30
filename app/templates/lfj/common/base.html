@@ -80,14 +80,14 @@
         {% block left%}
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar" id="left_nav">
-                <li {% if request.path=="/" %} class="active" {% endif %}>
-                    <a href="/lfj/zone">空间分布图</a>
+                <li {% if request.path=="/lfj/zone/" %} class="active" {% endif %}>
+                    <a href="/lfj/zone/">空间分布图</a>
                 </li>
-                <li {% if request.path=="/1" %} class="active" {% endif %}>
-                    <a href="/lfj/time">时间折线图</a>
+                <li {% if request.path=="/lfj/time/" %} class="active" {% endif %}>
+                    <a href="/lfj/time/">时间折线图</a>
                 </li>
-                <li {% if request.path=="/1" %} class="active" {% endif %}>
-                    <a href="/lfj/time_zone">时空变化图</a>
+                <li {% if request.path=="/lfj/time_zone/" %} class="active" {% endif %}>
+                    <a href="/lfj/time_zone/">时空变化折线堆叠图</a>
                 </li>
             </ul>
         </div>

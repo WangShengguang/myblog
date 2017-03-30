@@ -1,0 +1,134 @@
+{% extends "lfj/common/base.html" %}
+
+{% block css_ext %}
+    <style>
+        .bar {
+            height: 18px;
+            background: green;
+        }
+    </style>
+{% endblock %}
+
+{% block js_ext %}
+    <script src="{{ url_for('static', filename='lfj/echarts.js') }}"></script>
+    <script src="{{ url_for('static', filename='lfj/upload/jquery.ui.widget.js') }}"></script>
+    <script src="{{ url_for('static', filename='lfj/upload/jquery.iframe-transport.js') }}"></script>
+    <script src="{{ url_for('static', filename='lfj/upload/jquery.fileupload.js') }}"></script>
+    {#    <script src="{{ url_for('static', filename='lfj/zone.js') }}"></script>#}
+{% endblock %}
+
+
+{% block content %}
+    <div style="margin: 0 0">
+        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+        <div id="main" style="width: 950px;height:450px;"></div>
+
+    </div>
+
+    <script>
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+        $.get('/lfj/api/zone_data/').done(function (Data) {
+            {#        console.log(Data);#}
+            // 指定图表的配置项和数据
+            option = {
+                title: {
+                    text: '各县百岁老人折线图堆叠'
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    show: true
+                },
+                legend: {
+                    data: ['师宗县', '罗平县', '陆良县', '曲靖市', '马龙县', '富源县', '沾益县', '宣威市', '会泽县']//['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: [2000, 2010]//['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                },
+                yAxis: {
+                    type: 'value',
+                    axisLine : {onZero: true}
+                },
+                series: [
+
+                    {
+                        name: '师宗县',
+                        type: 'line',
+                        stack: '总量',
+                        data: [4, 7],// [120, 132, 101, 134, 90, 230, 210]
+                        //itemStyle : { normal: {label : {show: true}}} //显示每个拐点数据
+                    },
+                    {
+                        name: '罗平县',
+                        type: 'line',
+                        stack: '总量',
+                        data: [10, 24]
+                    },
+                    {
+                        name: '陆良县',
+                        type: 'line',
+                        stack: '总量',
+                        data: [1, 3]
+                    },
+                    {
+                        name: '曲靖市',
+                        type: 'line',
+                        stack: '总量',
+                        data: [6, 9]
+                    },
+                    {
+                        name: '马龙县',
+                        type: 'line',
+                        stack: '总量',
+                        data: [0, 0]
+                    },
+                    {
+                        name: '富源县',
+                        type: 'line',
+                        stack: '总量',
+                        data: [4, 11]
+                    },
+                    {
+                        name: '沾益县',
+                        type: 'line',
+                        stack: '总量',
+                        data: [0, 0]   //缺失数据
+                    },
+                    {
+                        name: '宣威市',
+                        type: 'line',
+                        stack: '总量',
+                        data: [10, 37]
+                    },
+                    {
+                        name: '沾益县',
+                        type: 'line',
+                        stack: '总量',
+                        data: [0, 0]   //缺失数据
+                    },
+                ]
+            };
+
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+
+            //自动显示tooltip；
+
+        });
+
+    </script>
+{% endblock %}

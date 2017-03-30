@@ -75,7 +75,8 @@ $(document).ready(function () {
                 {
                     name: '访问量',
                     type: 'line',
-                    data: data.count//[1, -2, 2, 5, 3, 2, 0],   //访问量  从api获取
+                    data: data.count,//[1, -2, 2, 5, 3, 2, 0],   //访问量  从api获取
+                    itemStyle : { normal: {label : {show: true}}} ,//显示每个拐点数据
                 }
             ]
         };

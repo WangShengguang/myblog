@@ -46,7 +46,7 @@
         links.pop();
         option = {
             title: {
-                text: '从南到北各县百岁老人人数'
+                text: '从南到北各县百岁老人数'
             },
             tooltip: {
                 trigger: 'axis'
@@ -73,6 +73,7 @@
                     edgeSymbol: ['circle', 'arrow'],
                     edgeSymbolSize: [4, 10],
                     data: data,
+                    itemStyle : { normal: {label : {show: true}}} ,//显示每个拐点数据
                     links: links,
                     lineStyle: {
                         normal: {

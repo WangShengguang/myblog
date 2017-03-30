@@ -13,7 +13,7 @@ FILE_PATH = BASE_DIR + os.sep + 'files'
 
 @lfj.route('/test/', methods=['GET'])
 def test():
-    return render_template('lfj/zone_2.html')
+    return render_template('lfj/time_zone.html')
 
 
 @lfj.route('/', methods=['GET'])
@@ -33,7 +33,7 @@ def time():
 
 @lfj.route('/time_zone/', methods=['GET', 'POST'])
 def time_zone():
-    return render_template('lfj/ipstat.html')
+    return render_template('lfj/time_zone.html')
 
 
 @lfj.route('/api/zone_data/')
