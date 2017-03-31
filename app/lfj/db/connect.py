@@ -10,7 +10,7 @@ db_cfg = {
     'port': 3306,
     'user': 'root',
     'passwd': 'password',
-    'db': 'test',
+    'db': 'flask ',
 }
 
 # 初始化数据库连接:

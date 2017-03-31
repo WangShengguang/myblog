@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <link rel="icon" href="http://v3.bootcss.com/favicon.ico">
 
-    <title>Dashboard Template for Bootstrap</title>
+    <title>lfj</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/static/lfj/base/bootstrap.min.css" rel="stylesheet">
@@ -50,7 +50,7 @@
 
         -->
     </style>
-    {% block css_ext%} {%endblock%}
+    {% block css_ext %} {% endblock %}
 
     {% block js_ext %} {% endblock %}
 </head>
@@ -58,43 +58,46 @@
 <body>
 
 {% block head_nav %}
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/lfj">lfj</a>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/lfj">lfj</a>
+            </div>
         </div>
-    </div>
-</nav>
-{%endblock head_nav%}
+    </nav>
+{% endblock head_nav %}
 
 
 <div class="container-fluid">
     <div class="row">
-        {% block left%}
-        <div class="col-sm-3 col-md-2 sidebar">
-            <ul class="nav nav-sidebar" id="left_nav">
-                <li {% if request.path=="/lfj/zone/" %} class="active" {% endif %}>
-                    <a href="/lfj/zone/">空间分布图</a>
-                </li>
-                <li {% if request.path=="/lfj/time/" %} class="active" {% endif %}>
-                    <a href="/lfj/time/">时间折线图</a>
-                </li>
-                <li {% if request.path=="/lfj/time_zone/" %} class="active" {% endif %}>
-                    <a href="/lfj/time_zone/">时空变化折线堆叠图</a>
-                </li>
-            </ul>
-        </div>
-        {% endblock left%}
+        {% block left %}
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar" id="left_nav">
+                    <li {% if request.path=="/lfj/zone/" %} class="active" {% endif %}>
+                        <a href="/lfj/zone/">空间分布图</a>
+                    </li>
+                    <li {% if request.path=="/lfj/time/" %} class="active" {% endif %}>
+                        <a href="/lfj/time/">时间折线图</a>
+                    </li>
+                    <li {% if request.path=="/lfj/time_zone/" %} class="active" {% endif %}>
+                        <a href="/lfj/time_zone/">时空变化折线堆叠图</a>
+                    </li>
+                    <li {% if request.path=="/lfj/gdp/" %} class="active" {% endif %}>
+                        <a href="/lfj/gdp/">GDP与百岁老人数关系</a>
+                    </li>
+                </ul>
+            </div>
+        {% endblock left %}
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            {% block content%}
-            {%endblock%}
+            {% block content %}
+            {% endblock %}
         </div>
     </div>
 </div>
